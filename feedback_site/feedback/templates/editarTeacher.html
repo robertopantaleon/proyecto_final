@@ -1,0 +1,35 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestión de Cursos {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edición de Teacher</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarTeacher/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="textName" name="txtName" class="form-control" placeholder="Name" maxlength="200" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="textSurnames" name="txtSurnames" class="form-control" placeholder="Surnames" maxlength="200" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="textEmail" name="txtEmail" class="form-control" placeholder="Email" maxlength="200" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="textCareer" name="txtCareer" class="form-control" placeholder="Career" maxlength="200" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="textPub_date" name="txtPub_date" class="form-control" placeholder="Pub_date" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

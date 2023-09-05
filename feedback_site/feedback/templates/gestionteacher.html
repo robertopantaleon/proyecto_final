@@ -1,0 +1,67 @@
+{% extends "./base.html" %}
+
+{% block tittle %} Gestion de Maestros {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h2> Gestion Maestros </h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarMaestros/" method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <div class="form-group">
+                        <input type="text" id="textName" name="txtName" class="form-control" placeholder="Name" maxlength="200" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="textSurnames" name="txtSurnames" class="form-control" placeholder="Surnames" maxlength="200" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="textEmail" name="txtEmail" class="form-control" placeholder="Email" maxlength="200" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="textCareer" name="txtCareer" class="form-control" placeholder="Career" maxlength="200" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="textPub_date" name="txtPub_date" class="form-control" placeholder="Pub_date" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Listado de Maestros</h1>
+       <div class="table-responsive py-2">
+        <table class="table table-striped">
+         <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Carrera</th>
+            <th>Fecha Publicacion</th>
+            <th>Acciones</th>
+          </tr>
+         </thead>
+         <tbody>
+          {% for t in teachers %}
+          <tr>
+            <td>{{ t.name }}</td>
+            <td>{{ t.surnames }}</td>
+            <td>{{ t.email }}</td>
+            <td>{{ t.career }}</td>
+            <td>{{ t.pub_date }}</td>
+            <td><a href="edicionTeacher/{{t.name}}" class="btn btn-info">Editar</a></td>
+            <td><a href="eliminarTeacher/{{t.name}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+          </tr>
+          {% endfor %}
+         </tbody>
+        </table>
+       </div>
+    </div>
+</div>
+{% endblock %}
